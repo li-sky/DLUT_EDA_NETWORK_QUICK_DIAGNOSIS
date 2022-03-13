@@ -3,6 +3,7 @@ import subprocess
 import sys
 import socket
 import requests
+import os
 from random import randrange
 
 def printf(*args):
@@ -73,5 +74,9 @@ print('[INFO]',r.text)
 
 x = urllib.request.getproxies()
 if (x!={}):
-    print("Proxy settings is not empty. Try clearing the settings. \n 存在系统代理设置，可尝试清除。")
+    print("[WARN] Proxy settings is not empty. Try clearing the settings. \n 存在系统代理设置，可尝试清除。")
+
+print("[INFO] Running ping and traceroute to baidu.com...")
+os.system("ping -c 4 baidu.com" if ostype == 1 else "ping baidu.com")
+os.system("traceroute baidu.com" if ostype == 1 else "tracert baidu.com")
 
