@@ -31,7 +31,7 @@ isConnected = 0
 if (ostype == 1):
     if ("DLUT-EDA" in subprocess.check_output("iwgetid").decode('utf-8')):
         isConnected = 1
-elif ("DLUT-EDA" in subprocess.check_output("netsh wlan show interfaces").decode('utf-8')):
+elif ("DLUT-EDA" in subprocess.check_output("netsh wlan show interfaces").decode('gbk')):
         isConnected = 1
 
 if (isConnected == 1):
@@ -56,7 +56,7 @@ if (ostype == 1):
             print("[INFO]DNS Settings OK")
         else:
             print("[WARN]DNS is not school provided. Might occur block.")
-elif ("202.118.66.6" in subprocess.check_output("ipconfig /all").decode('utf-8')):
+elif ("202.118.66.6" in subprocess.check_output("ipconfig /all").decode('utf-8' if ostype == 1 else 'gbk')):
     print("[INFO]DNS setting might be OK")
 else:
     print("[WARN]DNS is not school provided. Might occur block.")
@@ -79,4 +79,3 @@ if (x!={}):
 print("[INFO] Running ping and traceroute to baidu.com...")
 os.system("ping -c 4 baidu.com" if ostype == 1 else "ping baidu.com")
 os.system("traceroute baidu.com" if ostype == 1 else "tracert baidu.com")
-
